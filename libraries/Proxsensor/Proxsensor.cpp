@@ -14,7 +14,8 @@ Proxsensor::Proxsensor(int echoPin, int trigPin, long maxDis)
 	pinMode(trigPin, OUTPUT);
 	_trigPin = trigPin;
 	_echoPin = echoPin;
-	maxDis = maxDistance;
+	maxDistance = maxDist;
+	cmToMicroSecond = 0.0343/2;
 }
 
 long Proxsensor::getDistance()
@@ -33,5 +34,6 @@ long Proxsensor::getDistance()
 		duration = maxDuration;
 	}
 	distance = duration * cmToMicroSecond;
+	return distance;
 }
 

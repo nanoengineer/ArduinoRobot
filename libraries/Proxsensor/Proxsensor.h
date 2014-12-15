@@ -12,8 +12,8 @@ by: Tony Wu
 class Proxsensor
 {
 public:
-	Proxsensor(int echoPin, int trigPin);
-	long getDistance( long maxDistance); 
+	Proxsensor(int echoPin, int trigPin, long maxDistance);
+	long getDistance(); 
 
 	long distance;
 	long maxDistance;
@@ -21,7 +21,7 @@ public:
 private:
 	int _trigPin;
 	int _echoPin;
-	long cmToMicroSecond = 0.0343/2;
+	long cmToMicroSecond;
 };
 
 
