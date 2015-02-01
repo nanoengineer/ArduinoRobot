@@ -17,16 +17,14 @@ Proxsensor::Proxsensor(int echoPin, int trigPin, int maxDis) {
 	_maxDist = maxDist;
 	_objDist = 0;
 	_objVelo = 0;
+	_maxDura = (2 * maxDist) / SPEED_OF_SOUND; 
 
 }
 
 int Proxsensor::calcObjDistance()
 {	
-	_maxDura = (2 * maxDist) / SPEED_OF_SOUND; 
-
 	//send Pulse
 	sendPulse();
-
 	//receive Pulse
 	unsigned long duration = pulseIn(echoPin, HIGH, _maxDura); //pulseIn will return 0 if no signal is received within maxDuration period
 	if(duration == 0){
@@ -52,7 +50,8 @@ int Proxsensor::calcObjAccel()
 }
 
 
-void sendPulse() {
+void sendPulse()
+{
 	digitalWrite(trigPin,LOW);
 	delayMicroseconds(4);
 	digitalWrite(trigPin, HIGH);

@@ -8,13 +8,15 @@
 #define GREEN_LED_BIT		B00010000	
 #define RED_LED_BIT			B00100000
 
+class Brain; //forward declaration of brain
+
 class ShiftReg
 {
 public:
 	ShiftReg(int dataPin, int latchPin, int clockPin);
 	~ShiftReg();
 
-	void setData();
+	void collectData(char data); //from brain
 	void shiftData();
 
 private:
@@ -22,6 +24,8 @@ private:
 	int _latchPin;
 	int _clockPin;
 	char _dataByte;
+
+
 
 	/* data */
 };

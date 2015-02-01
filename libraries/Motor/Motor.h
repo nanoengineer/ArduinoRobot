@@ -12,7 +12,8 @@ public:
 	Motors(int drivePin);
 	~Motors();
 	void setPolarPWM(int polarPWM); 
-	void motorRun();
+	void run();
+	void off();
 	static int getMotorCount();
 
 private:
