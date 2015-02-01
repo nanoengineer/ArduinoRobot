@@ -6,34 +6,37 @@ by: Tony Wu
 #include "Arduino.h"
 #include "Proxsensor.h"
 
-
 //Initializes a Proxsensor instance with proper pin configs and the maximum detection distance
-Proxsensor::Proxsensor(int echoPin, int trigPin, long maxDis)
-{
+Proxsensor::Proxsensor(int echoPin, int trigPin, long maxDis) {
 	pinMode(echoPin, INPUT);
 	pinMode(trigPin, OUTPUT);
 	_trigPin = trigPin;
 	_echoPin = echoPin;
 	maxDistance = maxDist;
-	cmToMicroSecond = 0.0343/2;
 }
 
 long Proxsensor::getDistance()
 {
+	_maxDuration = maxDistance / CM_TO_MICROSECOND; 
+
 	//send Pulse
+	sendPulse();
+
+	//receive Pulse
+	long duration = pulseIn(echoPin, HIGH, maxDuration); //pulseIn will return 0 if no signal is received within maxDuration period
+	if(duration == 0){
+		duration = maxDuration;
+	}
+	distance = duration * CM_TO_MICROSECOND;
+	return distance;
+}
+
+void sendPulse() {
 	digitalWrite(trigPin,LOW);
 	delayMicroseconds(4);
 	digitalWrite(trigPin, HIGH);
 	delayMicroseconds(10);
 	digitalWrite(trigPin, LOW);
-
-	//receive Pulse
-	long maxDuration = maxDistance / cmToMicroSecond; 
-	long duration = pulseIn(echoPin, HIGH, maxDuration);
-	if(duration == 0){
-		duration = maxDuration;
-	}
-	distance = duration * cmToMicroSecond;
-	return distance;
 }
 
+Proxsensor::~Proxsensor(){}
