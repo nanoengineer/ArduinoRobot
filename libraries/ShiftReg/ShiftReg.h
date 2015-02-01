@@ -6,9 +6,7 @@
 #define LEFT_MOTOR_BIT_P	B00000100
 #define LEFT_MOTOR_BIT_N	B00001000
 #define GREEN_LED_BIT		B00010000	
-#define RED_LED_BIT			B00100000
-
-class Brain; //forward declaration of brain
+#define RED_LED_BIT			B00100000 
 
 class ShiftReg
 {
@@ -18,8 +16,10 @@ public:
 
 	void collectData(char data); //from brain
 	void shiftData();
-
+	static int getShiftRegCount();
+	
 private:
+	static int _shiftreg_count;
 	int _dataPin;
 	int _latchPin;
 	int _clockPin;

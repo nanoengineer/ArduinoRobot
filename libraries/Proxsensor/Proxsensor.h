@@ -7,20 +7,21 @@ by: Tony Wu
 #ifndef Proxsensor_h
 #define Proxsensor_h
 
-#define SPPED_OF_SOUND		0.340
 #define MAX_OBST_DIST		700 //mm
+#define SPEED_OF_SOUND		0.340 // mm/us
 
 class Proxsensor
 {
 public:
 	Proxsensor(int echoPin, int trigPin, int maxDistance);
+	~Proxsensor();
 	int calcObjDistance();
 	int calcObjVelocity();
 	int calcObjAccel();
+	int getProxsensorcount();
 
 private:
-	static int _sensor_count;
-	void sendPulse();
+	static int _proxsensor_count;
 	int _objDist; //mm
 	int _objVelo;	//mm/us
 	int _prevDist;
@@ -30,8 +31,8 @@ private:
 	int _maxDist;
 	int _trigPin;
 	int _echoPin;
-	int sampleInterval; //us
-
+	int _sampleInterval; //us
+	void sendPulse();
 };
 
 

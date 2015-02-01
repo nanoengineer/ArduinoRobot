@@ -17,5 +17,11 @@ bool Blinker::off()
 	return false;
 }
 
+int Blinker::getLedCount()
+{
+	return Blinker::_led_count;
+};
+
+
 Blinker::~Blinker() 
 {}

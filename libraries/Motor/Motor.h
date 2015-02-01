@@ -9,15 +9,15 @@ by: Tony Wu
 class Motor
 {
 public:
-	Motors(int drivePin);
-	~Motors();
+	Motor(int drivePin);
+	~Motor();
 	void setPolarPWM(int polarPWM); 
 	void run();
 	void off();
-	static int getMotorCount();
+	int getMotorCount();
 
 private:
-	static int _motor_count;
+	int _motor_count;
 	int _drivePin;
 	int _polarPWM;
 };

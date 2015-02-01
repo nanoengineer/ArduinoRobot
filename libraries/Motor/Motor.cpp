@@ -12,23 +12,24 @@ Motor::Motor(int drivePin)
 	analogWrite(_drivePin, 0); //Off by default
 }
 
-Motor::setPolarPWM(int PolarPWM)
+void Motor::setPolarPWM(int polarPWM)
 {
-	_polarPWM = polarPWM
+	_polarPWM = polarPWM;
 }
 
-Motor::run() 
+void Motor::run() 
 {
 	analogWrite(_drivePin, _polarPWM);
 }
 
-Motor::off() 
+void Motor::off() 
 {
 	analogWrite(_drivePin, 0);
 }
 
-static int Motor::getMotorCount() 
+int Motor::getMotorCount() 
 {
-	return _motor_count;
+	return Motor::_motor_count;
 }
+
 Motor::~Motor(){};
