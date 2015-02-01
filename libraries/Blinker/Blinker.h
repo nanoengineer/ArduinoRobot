@@ -3,8 +3,6 @@
 #ifndef Blinker_h
 #define Blinker_h
 
-#include "Arduino.h"
-
 class Blinker
 {
 public:

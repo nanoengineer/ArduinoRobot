@@ -6,30 +6,51 @@ by: Tony Wu
 #include "Arduino.h"
 #include "Proxsensor.h"
 
+#define SPEED_OF_SOUND		0.340 // mm/us
+
 //Initializes a Proxsensor instance with proper pin configs and the maximum detection distance
-Proxsensor::Proxsensor(int echoPin, int trigPin, long maxDis) {
-	pinMode(echoPin, INPUT);
+Proxsensor::Proxsensor(int echoPin, int trigPin, int maxDis) {
+	pinMode(echoPin, INPUT_PULLUP);
 	pinMode(trigPin, OUTPUT);
 	_trigPin = trigPin;
 	_echoPin = echoPin;
-	maxDistance = maxDist;
+	_maxDist = maxDist;
+	_objDist = 0;
+	_objVelo = 0;
+
 }
 
-long Proxsensor::getDistance()
-{
-	_maxDuration = maxDistance / CM_TO_MICROSECOND; 
+int Proxsensor::calcObjDistance()
+{	
+	_maxDura = (2 * maxDist) / SPEED_OF_SOUND; 
 
 	//send Pulse
 	sendPulse();
 
 	//receive Pulse
-	long duration = pulseIn(echoPin, HIGH, maxDuration); //pulseIn will return 0 if no signal is received within maxDuration period
+	unsigned long duration = pulseIn(echoPin, HIGH, _maxDura); //pulseIn will return 0 if no signal is received within maxDuration period
 	if(duration == 0){
-		duration = maxDuration;
+		(int) duration = _maxDura;
 	}
-	distance = duration * CM_TO_MICROSECOND;
-	return distance;
+
+	_prevDist = _objDist;
+	_objDist = (2 * diration) * SPEED_OF_SOUND;
+	return _objDist;
 }
+
+int Proxsensor::calcObjVelocity()
+{
+	_prevVelo = _objVelo;
+	_objVelo = (_prevDist - _objDist)/sampleInterval;
+	return _objVelo;
+}
+
+int Proxsensor::calcObjAccel()
+{
+	_objAccel = (_prevVelo - _objVelo)/sampleInterval;
+	return _objAccel;
+}
+
 
 void sendPulse() {
 	digitalWrite(trigPin,LOW);

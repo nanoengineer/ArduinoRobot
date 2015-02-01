@@ -7,26 +7,30 @@ by: Tony Wu
 #ifndef Proxsensor_h
 #define Proxsensor_h
 
-#define CM_TO_MICROSECOND	0.0343/2
-#define MAX_OBST_DIST		70 //cm
+#define SPPED_OF_SOUND		0.340
+#define MAX_OBST_DIST		700 //mm
 
 class Proxsensor
 {
 public:
-	Proxsensor(int echoPin, int trigPin, long maxDistance);
-	long calcObjDistance();
-	long calcObjVelocity();
+	Proxsensor(int echoPin, int trigPin, int maxDistance);
+	int calcObjDistance();
+	int calcObjVelocity();
+	int calcObjAccel();
 
 private:
 	static int _sensor_count;
 	void sendPulse();
-	long _objDistance;
-	long _objVelo;
-	long _prevDistance;
-	long _prevVelo;
-	long _maxDuration;
+	int _objDist; //mm
+	int _objVelo;	//mm/us
+	int _prevDist;
+	int _prevVelo;
+	int _objAccel;
+	unsigned long _maxDura;
+	int _maxDist;
 	int _trigPin;
 	int _echoPin;
+	int sampleInterval; //us
 
 };
 
