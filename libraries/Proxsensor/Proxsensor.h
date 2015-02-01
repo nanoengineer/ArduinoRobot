@@ -7,8 +7,6 @@ by: Tony Wu
 #ifndef Proxsensor_h
 #define Proxsensor_h
 
-#include "Arduino.h"
-
 #define CM_TO_MICROSECOND	0.0343/2
 #define MAX_OBST_DIST		70 //cm
 
@@ -20,7 +18,7 @@ public:
 	long calcObjVelocity();
 
 private:
-	static int sensor_count;
+	static int _sensor_count;
 	void sendPulse();
 	long _objDistance;
 	long _objVelo;

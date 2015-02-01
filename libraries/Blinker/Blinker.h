@@ -11,12 +11,12 @@ public:
 	Blinker();
 	~Blinker();
 
-	void setLedBit();
+	bool on();
+	bool off();
 	/* data */
 private:
-	static int led_count;
-	char ledBit;
-
+	static int _led_count;
+	bool _ledstate;
 };
 
 

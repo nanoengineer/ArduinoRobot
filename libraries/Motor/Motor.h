@@ -6,19 +6,17 @@ by: Tony Wu
 #ifndef Motor_h
 #define Motor_h
 
-#include "Arduino.h"
-#include "Proxsensor.h"
-#include "ShiftReg.h"
-
 class Motor
 {
 public:
 	Motors(int drivePin);
 	~Motors();
 	void setPolarPWM(int polarPWM); 
+	void motorRun();
+	static int getMotorCount();
 
 private:
-	static int motor_count;
+	static int _motor_count;
 	int _drivePin;
 	int _polarPWM;
 };
