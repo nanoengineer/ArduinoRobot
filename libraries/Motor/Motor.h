@@ -14,10 +14,10 @@ public:
 	void setPolarPWM(int polarPWM); 
 	void run();
 	void off();
-	int getMotorCount();
+	static int getMotorCount();
 
 private:
-	int _motor_count;
+	static int _motor_count;
 	int _drivePin;
 	int _polarPWM;
 };

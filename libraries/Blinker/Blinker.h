@@ -11,7 +11,7 @@ public:
 
 	bool on();
 	bool off();
-	int getLedCount();
+	static int getLedCount();
 	/* data */
 private:
 	static int _led_count;

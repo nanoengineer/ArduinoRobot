@@ -3,9 +3,10 @@
 #include "Arduino.h"
 #include "Motor.h"
 
+int Motor::_motor_count;
+
 Motor::Motor(int drivePin)
 {
-	_motor_count = 0;
 	pinMode(drivePin, OUTPUT);
 	int _drivePin = drivePin;
 	_motor_count++;
@@ -29,7 +30,7 @@ void Motor::off()
 
 int Motor::getMotorCount() 
 {
-	return Motor::_motor_count;
+	return _motor_count;
 }
 
 Motor::~Motor(){};

@@ -7,14 +7,17 @@
 #define LEFT_MOTOR_BIT_N	B00001000
 #define GREEN_LED_BIT		B00010000	
 #define RED_LED_BIT			B00100000 
-
+	
+#define DATA_PIN			2
+#define LATCH_PIN			4
+#define CLOCK_PIN			7
 class ShiftReg
 {
 public:
 	ShiftReg(int dataPin, int latchPin, int clockPin);
 	~ShiftReg();
 
-	void collectData(char data); //from brain
+	void setData(char data); //from brain
 	void shiftData();
 	static int getShiftRegCount();
 	

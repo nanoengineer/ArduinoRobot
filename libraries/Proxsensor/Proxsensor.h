@@ -8,6 +8,7 @@ by: Tony Wu
 #define Proxsensor_h
 
 #define SPEED_OF_SOUND		0.340 // mm/us
+#define MAX_DIST			700   //mm
 
 class Proxsensor
 {
