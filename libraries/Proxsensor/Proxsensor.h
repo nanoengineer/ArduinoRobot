@@ -7,7 +7,6 @@ by: Tony Wu
 #ifndef Proxsensor_h
 #define Proxsensor_h
 
-#define MAX_OBST_DIST		700 //mm
 #define SPEED_OF_SOUND		0.340 // mm/us
 
 class Proxsensor
@@ -18,7 +17,7 @@ public:
 	int calcObjDistance();
 	int calcObjVelocity();
 	int calcObjAccel();
-	int getProxsensorcount();
+	static int getProxsensorcount();
 
 private:
 	static int _proxsensor_count;

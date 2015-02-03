@@ -6,9 +6,10 @@ by: Tony Wu
 #include "Arduino.h"
 #include "Proxsensor.h"
 
+int Proxsensor::_proxsensor_count; //definition of static variable
+
 //Initializes a Proxsensor instance with proper pin configs and the maximum detection distance
 Proxsensor::Proxsensor(int echoPin, int trigPin, int maxDist) {
-	_proxsensor_count = 0;
 	_trigPin = trigPin;
 	_echoPin = echoPin;
 	pinMode(_echoPin, INPUT_PULLUP);
@@ -32,7 +33,7 @@ int Proxsensor::calcObjDistance()
 	}
 
 	_prevDist = _objDist;
-	_objDist = (2 * duration) * SPEED_OF_SOUND;
+	_objDist = (int) (duration/2) * SPEED_OF_SOUND;
 	return _objDist;
 }
 
@@ -53,7 +54,7 @@ int Proxsensor::calcObjAccel()
 void Proxsensor::sendPulse()
 {
 	digitalWrite(_trigPin,LOW);
-	delayMicroseconds(4);
+	delayMicroseconds(2);
 	digitalWrite(_trigPin, HIGH);
 	delayMicroseconds(10);
 	digitalWrite(_trigPin, LOW);
