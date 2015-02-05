@@ -20,7 +20,7 @@ Motor::Motor(int drivePin)
 	}
 
 	pinMode(drivePin, OUTPUT);
-	int _drivePin = drivePin;
+	_drivePin = drivePin;
 	_motor_count++;
 	_activeByte = 0;
 	analogWrite(_drivePin, 0); //Ensure off by default

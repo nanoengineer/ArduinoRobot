@@ -21,9 +21,9 @@ SRegister.RedLED.on();
 SRegister.GreenLED.on();
 SRegister.LeftMotor.setPolarPWM(135);
 SRegister.RightMotor.setPolarPWM(135);
+SRegister.collectData();
 SRegister.LeftMotor.run();
 SRegister.RightMotor.run();
-SRegister.collectData();
 SRegister.shiftData();
 delay(1000);
 
