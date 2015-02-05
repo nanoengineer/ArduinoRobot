@@ -10,6 +10,14 @@ by: Tony Wu
 #define SPEED_OF_SOUND		0.340 // mm/us
 #define MAX_DIST			700   //mm
 
+#define MID_ECHO_PIN		12
+#define MID_TRIG_PIN		13
+#define LEFT_ECHO_PIN		8
+#define LEFT_TRIG_PIN		10
+#define RIGHT_ECHO_PIN		9
+#define RIGHT_TRIG_PIN		11
+
+
 class Proxsensor
 {
 public:

@@ -10,22 +10,19 @@ by: Tony Wu
 #define	NUM_LEDS			2
 #define NUM_PROXSENSORS		3
 
-#define SENSOR_M_ECHO_PIN	12
-#define SENSOR_M_TRIG_PIN	13
-#define SENSOR_L_ECHO_PIN	8
-#define SENSOR_L_TRIG_PIN	10
-#define SENSOR_R_ECHO_PIN	9
-#define SENSOR_R_TRIG_PIN	11
+// #define SENSOR_M_ECHO_PIN	12
+// #define SENSOR_M_TRIG_PIN	13
+// #define SENSOR_L_ECHO_PIN	8
+// #define SENSOR_L_TRIG_PIN	10
+// #define SENSOR_R_ECHO_PIN	9
+// #define SENSOR_R_TRIG_PIN	11
 
-#define MOTOR_L_PIN			6
-#define MOTOR_R_PIN			5
+// #define MOTOR_L_PIN			6
+// #define MOTOR_R_PIN			5
 
-#define DATA_PIN			2
-#define LATCH_PIN			4
-#define CLOCK_PIN			7
-
-
-#define 
+// #define DATA_PIN			2
+// #define LATCH_PIN			4
+// #define CLOCK_PIN			7
 
 class Brain
 {

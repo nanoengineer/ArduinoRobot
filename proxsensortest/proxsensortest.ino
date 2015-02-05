@@ -1,25 +1,39 @@
 
 #include "Proxsensor.h"
-#include "Blinker.h"
 #include "ShiftReg.h"
+#include "ShiftDevice.h"
+#include "Motor.h"
+#include "Blinker.h"
 // proxsensortest.ino
 
-Proxsensor SensorMid(12,13,MAX_DIST);
-Proxsensor SensorLeft(8,10,MAX_DIST);
-Proxsensor SensorRight(9,11,MAX_DIST);
+Proxsensor SensorMid(MID_ECHO_PIN,MID_TRIG_PIN,MAX_DIST);
+Proxsensor SensorLeft(LEFT_ECHO_PIN,LEFT_TRIG_PIN,MAX_DIST);
+Proxsensor SensorRight(RIGHT_ECHO_PIN,RIGHT_TRIG_PIN,MAX_DIST);
 ShiftReg SRegister(DATA_PIN,LATCH_PIN,CLOCK_PIN);
 
 void setup() {
 Serial.begin(9600);
+Serial.println("Start!");
 }
 
 void loop() {
-	SRegister.setData(GREEN_LED_BIT);
-	SRegister.shiftData();
-	delay(100);
-	SRegister.setData(RED_LED_BIT);
-	SRegister.shiftData();
-	delay(100);
+SRegister.RedLED.on();
+SRegister.GreenLED.on();
+SRegister.LeftMotor.setPolarPWM(135);
+SRegister.RightMotor.setPolarPWM(135);
+SRegister.LeftMotor.run();
+SRegister.RightMotor.run();
+SRegister.collectData();
+SRegister.shiftData();
+delay(1000);
+
+
+	// SRegister.setData(GREEN_LED_BIT);
+	// SRegister.shiftData();
+	// delay(1000);
+	// SRegister.setData(RED_LED_BIT|GREEN_LED_BIT);
+	// SRegister.shiftData();
+	// delay(1000);
 // int distM = SensorMid.calcObjDistance();
 // int distL = SensorLeft.calcObjDistance();
 // int distR = SensorRight.calcObjDistance();
