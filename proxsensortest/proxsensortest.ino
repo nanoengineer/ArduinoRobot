@@ -19,8 +19,8 @@ Serial.println("Start!");
 void loop() {
 SRegister.RedLED.on();
 SRegister.GreenLED.on();
-SRegister.LeftMotor.setPolarPWM(135);
-SRegister.RightMotor.setPolarPWM(135);
+SRegister.LeftMotor.setPolarPWM(250);
+SRegister.RightMotor.setPolarPWM(-250);
 SRegister.collectData();
 SRegister.LeftMotor.run();
 SRegister.RightMotor.run();
