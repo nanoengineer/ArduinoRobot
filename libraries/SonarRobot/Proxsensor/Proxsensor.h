@@ -9,6 +9,7 @@ by: Tony Wu
 
 #define SPEED_OF_SOUND		0.340 // mm/us
 #define MAX_DIST			700   //mm
+#define SAMPLE_INT			100000
 
 #define MID_ECHO_PIN		12
 #define MID_TRIG_PIN		13
@@ -17,16 +18,17 @@ by: Tony Wu
 #define RIGHT_ECHO_PIN		9
 #define RIGHT_TRIG_PIN		11
 
-
 class Proxsensor
 {
 public:
 	Proxsensor(int echoPin, int trigPin, int maxDistance);
 	~Proxsensor();
+	void sendPulse();
+	void rcvPulse();
 	int calcObjDistance();
 	int calcObjVelocity();
 	int calcObjAccel();
-	static int getProxsensorcount();
+	static int getProxsensorCount();
 
 private:
 	static int _proxsensor_count;
@@ -34,13 +36,14 @@ private:
 	int _objVelo;	//mm/us
 	int _prevDist;
 	int _prevVelo;
-	int _objAccel;
-	unsigned long _maxDura;
-	int _maxDist;
+	int _objAccel; //mm/us^2
+	unsigned long _duration; //us
+	unsigned long _maxDura;  //us
+	int _maxDist; //mm
+	int _sampleInterval; //us
 	int _trigPin;
 	int _echoPin;
-	int _sampleInterval; //us
-	void sendPulse();
+
 };
 
 

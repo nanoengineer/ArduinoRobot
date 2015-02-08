@@ -1,5 +1,4 @@
 #include "Blinker.h"
-#include "ShiftDevice.h"
 
 int Blinker::_led_count;
 
@@ -11,7 +10,7 @@ Blinker::Blinker(char color)
 		_mask = GREEN_MASK;
 	}
 
-	else if(color == 'R' || color == 'r') //WHY DOES THIS NOT WORK WHEN IT'S AN ELSE IF.
+	else if(color == 'R' || color == 'r') 
 	{
 		_controlByte = RED_BYTE;
 		_mask = RED_MASK;

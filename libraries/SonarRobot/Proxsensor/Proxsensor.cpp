@@ -6,6 +6,10 @@ by: Tony Wu
 #include "Arduino.h"
 #include "Proxsensor.h"
 
+
+#define PrL(x) Serial.println(x);
+#define Pr(x) Serial.print(x);
+
 int Proxsensor::_proxsensor_count; //definition of static variable
 
 //Initializes a Proxsensor instance with proper pin configs and the maximum detection distance
@@ -18,22 +22,31 @@ Proxsensor::Proxsensor(int echoPin, int trigPin, int maxDist) {
 	_objDist = 0;
 	_objVelo = 0;
 	_maxDura = (2 * maxDist) / SPEED_OF_SOUND; 
-	_sampleInterval = 4000;
+	_sampleInterval = SAMPLE_INT;
 	_proxsensor_count++;
+}
+
+void Proxsensor::sendPulse()
+{
+	digitalWrite(_trigPin,LOW);
+	delayMicroseconds(2);
+	digitalWrite(_trigPin, HIGH);
+	delayMicroseconds(10);
+	digitalWrite(_trigPin, LOW);
+}
+
+void Proxsensor::rcvPulse()
+{
+	_duration = pulseIn(_echoPin, HIGH, _maxDura); //pulseIn will return 0 if no signal is received within maxDuration period
+	if(_duration == 0){
+		_duration = _maxDura;
+	}
 }
 
 int Proxsensor::calcObjDistance()
 {	
-	//send Pulse
-	sendPulse();
-	//receive Pulse
-	unsigned long duration = pulseIn(_echoPin, HIGH, _maxDura); //pulseIn will return 0 if no signal is received within maxDuration period
-	if(duration == 0){
-		duration = _maxDura;
-	}
-
 	_prevDist = _objDist;
-	_objDist = (int) (duration/2) * SPEED_OF_SOUND;
+	_objDist = (int) (_duration/2) * SPEED_OF_SOUND;
 	return _objDist;
 }
 
@@ -50,17 +63,7 @@ int Proxsensor::calcObjAccel()
 	return _objAccel;
 }
 
-
-void Proxsensor::sendPulse()
-{
-	digitalWrite(_trigPin,LOW);
-	delayMicroseconds(2);
-	digitalWrite(_trigPin, HIGH);
-	delayMicroseconds(10);
-	digitalWrite(_trigPin, LOW);
-}
-
-int Proxsensor::getProxsensorcount()
+int Proxsensor::getProxsensorCount()
 {
 	return _proxsensor_count;
 };

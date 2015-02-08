@@ -1,7 +1,6 @@
 //Motor.cpp 
 
 #include "Arduino.h"
-#include "ShiftDevice.h"
 #include "Motor.h"
 
 int Motor::_motor_count;
@@ -18,9 +17,9 @@ Motor::Motor(int drivePin)
 		_controlByte = RIGHT_BYTE;
 		_mask = RIGHT_MASK;
 	}
-
 	pinMode(drivePin, OUTPUT);
 	_drivePin = drivePin;
+	
 	_motor_count++;
 	_activeByte = 0;
 	analogWrite(_drivePin, 0); //Ensure off by default

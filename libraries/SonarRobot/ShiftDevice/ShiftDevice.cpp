@@ -2,8 +2,10 @@
 #include "ShiftDevice.h"
 #include "Arduino.h"
 
+int ShiftDevice::_shift_device_count;
 
 ShiftDevice::ShiftDevice(){
+	_shift_device_count++;
 }
 
 unsigned char ShiftDevice::getActiveByte()
@@ -14,6 +16,11 @@ unsigned char ShiftDevice::getActiveByte()
 unsigned char ShiftDevice::getMask()
 {
 	return _mask;
+}
+
+int ShiftDevice::getShiftDeviceCount()
+{
+	return _shift_device_count;
 }
 
 ShiftDevice::~ShiftDevice(){
